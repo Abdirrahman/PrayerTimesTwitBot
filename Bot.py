@@ -8,14 +8,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# page_url.replace(u'\ufeff', '')
-# 8e9e14c7-323f-4755-88d7-8bd51ab9f094
-# API_KEY = os.getenv('URL_API_KEY')
+
 url = "https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2020&month=august"
 r = requests.get(url)
 print(r)
-# r = requests.get(
-#     f"https://www.londonprayertimes.com/api/times/?format=json&key={API_KEY}&year=2020&month=august")
+
 text_json = json.loads(r.text)
 print(text_json)
 today = arrow.now().format('YYYY-MM-DD')
