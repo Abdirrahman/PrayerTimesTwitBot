@@ -23,10 +23,11 @@ timed = datetime.now().strftime('%I:%M')
 fajr = text_json["times"][today]["fajr"]
 dhuhr = text_json["times"][today]["dhuhr"]
 asr = text_json["times"][today]["asr"]
-magrib = text_json["times"][today]["magrib"]
+magrib = "08:35"
 isha = text_json["times"][today]["isha"]
 
-
+print(isha)
+print(timed)
 consumer_key = os.getenv('CONSUMER_KEY')
 
 consumer_secret = os.getenv('CONSUMER_SECRET')
@@ -44,21 +45,53 @@ print(text_json["times"][today]["isha"])
 print(timed)
 
 
-def check_isha():
-    threading.Timer(60.0, check_isha).start()
+def check_fajr():
+    threading.Timer(60.0, check_fajr).start()
     if timed == fajr:
         api.update_status(text_json["times"][today]["fajr"])
-    elif timed == dhuhr:
+    else:
+        print("f")
+
+
+def check_dhuhr():
+    threading.Timer(60.0, check_dhuhr).start()
+    if timed == dhuhr:
         api.update_status(text_json["times"][today]["dhuhr"])
-    elif timed == asr:
+    else:
+        print("d")
+
+
+def check_asr():
+    threading.Timer(60.0, check_asr).start()
+    if timed == asr:
         api.update_status(text_json["times"][today]["asr"])
-    elif timed == magrib:
+    else:
+        print("a")
+
+
+def check_magrib():
+    threading.Timer(60.0, check_magrib).start()
+    if timed == magrib:
         api.update_status(text_json["times"][today]["margib"])
-    elif timed == isha:
+    else:
+        print("m")
+
+
+def check_isha():
+    threading.Timer(60.0, check_isha).start()
+    if timed == isha:
         api.update_status(text_json["times"][today]["isha"])
         print(text_json["times"][today]["isha"])
     else:
         print("yo")
 
 
-check_isha()
+threading.Thread(target=check_fajr).start()
+
+threading.Thread(target=check_dhuhr).start()
+
+threading.Thread(target=check_asr).start()
+
+threading.Thread(target=check_magrib).start()
+
+threading.Thread(target=check_isha).start()
