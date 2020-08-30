@@ -40,9 +40,12 @@ auth.set_access_token(key, secret)
 
 api = tweepy.API(auth)
 
+print(text_json["times"][today]["isha"])
+print(timed)
 
-def check_pt():
-    threading.Timer(60.0, check_pt).start()
+
+def check_isha():
+    threading.Timer(60.0, check_isha).start()
     if timed == fajr:
         api.update_status(text_json["times"][today]["fajr"])
     elif timed == dhuhr:
@@ -53,3 +56,9 @@ def check_pt():
         api.update_status(text_json["times"][today]["margib"])
     elif timed == isha:
         api.update_status(text_json["times"][today]["isha"])
+        print(text_json["times"][today]["isha"])
+    else:
+        print("yo")
+
+
+check_isha()
