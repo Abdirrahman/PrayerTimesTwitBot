@@ -4,8 +4,7 @@ import json
 import requests
 from datetime import datetime
 import arrow
-import sched
-import time
+import threading
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -19,7 +18,6 @@ text_json = json.loads(r.text)
 
 today = arrow.now().format('YYYY-MM-DD')
 timed = datetime.now().strftime('%I:%M')
-s = sched.scheduler(time.time, time.sleep)
 
 
 fajr = text_json["times"][today]["fajr"]
@@ -43,7 +41,8 @@ auth.set_access_token(key, secret)
 api = tweepy.API(auth)
 
 
-def check_pt(sc):
+def check_pt():
+    threading.Timer(60.0, check_pt).start()
     if timed == fajr:
         api.update_status(text_json["times"][today]["fajr"])
     elif timed == dhuhr:
@@ -54,8 +53,3 @@ def check_pt(sc):
         api.update_status(text_json["times"][today]["margib"])
     elif timed == isha:
         api.update_status(text_json["times"][today]["isha"])
-    s.enter(60, 1, check_pt, (s,))
-
-
-s.enter(60, 1, check_pt, (s,))
-s.run()
