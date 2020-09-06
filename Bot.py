@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-url = "https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2020&month=september"
+url = "https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2020&month=september&24hours=true"
 r = requests.get(url)
 
 
@@ -62,6 +62,8 @@ schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(dhuhr)
 schedule.every().day.at(text_json["times"][today]["asr"]).do(asr)
 schedule.every().day.at(text_json["times"][today]["magrib"]).do(magrib)
 schedule.every().day.at(text_json["times"][today]["isha"]).do(isha)
+
+
 while True:
     schedule.run_pending()
     time.sleep(1)
