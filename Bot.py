@@ -37,31 +37,15 @@ auth.set_access_token(key, secret)
 api = tweepy.API(auth)
 
 
-def fajr():
-    api.update_status("its fajr")
+def pray():
+    api.update_status("Its Time to Pray!")
 
 
-def dhuhr():
-    api.update_status("its dhuhr")
-
-
-def asr():
-    api.update_status("its asr")
-
-
-def magrib():
-    api.update_status("its maghrib")
-
-
-def isha():
-    api.update_status("its isha")
-
-
-schedule.every().day.at(text_json["times"][today]["fajr"]).do(fajr)
-schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(dhuhr)
-schedule.every().day.at(text_json["times"][today]["asr"]).do(asr)
-schedule.every().day.at(text_json["times"][today]["magrib"]).do(magrib)
-schedule.every().day.at(text_json["times"][today]["isha"]).do(isha)
+schedule.every().day.at(text_json["times"][today]["fajr"]).do(pray)
+schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(pray)
+schedule.every().day.at(text_json["times"][today]["asr"]).do(pray)
+schedule.every().day.at(text_json["times"][today]["magrib"]).do(pray)
+schedule.every().day.at(text_json["times"][today]["isha"]).do(pray)
 
 
 while True:
