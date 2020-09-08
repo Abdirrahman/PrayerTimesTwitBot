@@ -46,6 +46,7 @@ schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["asr"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["magrib"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["isha"]).do(pray)
+schedule.every().day.at("19:27").do(pray)
 
 
 while True:
