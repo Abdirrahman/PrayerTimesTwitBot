@@ -38,7 +38,18 @@ api = tweepy.API(auth)
 
 
 def pray():
-    api.update_status("Its Time to Pray!")
+    if timed == text_json["times"][today]["fajr"]:
+        api.update_status("it is fajr now!")
+    elif timed == text_json["times"][today]["dhuhr"]:
+        api.update_status("it is dhuhr now!")
+    elif timed == text_json["times"][today]["asr"]:
+        api.update_status("it is asr now!")
+    elif timed == text_json["times"][today]["magrib"]:
+        api.update_status("it is maghrib now!")
+    elif timed == text_json["times"][today]["isha"]:
+        api.update_status("it is isha now!")
+    else:
+        api.update_status("time should be 11:30 -- test")
 
 
 schedule.every().day.at(text_json["times"][today]["fajr"]).do(pray)
