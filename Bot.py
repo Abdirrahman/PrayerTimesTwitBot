@@ -50,8 +50,8 @@ def pray():
             api.update_status("it is isha now!")
         else:
             api.update_status("time should be 11:30 -- test")
-    except tweepy.TweepError as e:
-        print(e.reason)
+    except tweepy.TweepError:
+        api.update_status("error handled")
         sleep(2)
 
 
