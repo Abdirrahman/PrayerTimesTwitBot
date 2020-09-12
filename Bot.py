@@ -49,9 +49,9 @@ def pray():
         elif timed == text_json["times"][today]["isha"]:
             api.update_status("it is isha now!")
         else:
-            api.update_status("time should be 11:30 -- test")
+            api.update_status("time should be 12:30 -- test")
     except tweepy.TweepError:
-        api.update_status("error handled")
+        api.update_status("error handled.")
         sleep(2)
 
 
@@ -60,7 +60,7 @@ schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["asr"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["magrib"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["isha"]).do(pray)
-schedule.every().day.at("11:30").do(pray)
+schedule.every().day.at("12:30 BST").do(pray)
 
 
 while True:
