@@ -19,7 +19,8 @@ r = requests.get(url)
 text_json = json.loads(r.text)
 
 today = arrow.now().format('YYYY-MM-DD')
-timed = datetime.now().strftime('%I:%M')
+timed = datetime.now().strftime('%H:%M')
+
 
 print(timed)
 
@@ -52,7 +53,7 @@ def pray():
         elif datetime.now().hour == "20" or "21":
             api.update_status("it is isha now!")
         else:
-            api.update_status("time should be 12:30 -- test")
+            api.update_status("time should be 15:30 -- test")
     except tweepy.TweepError:
         print("2")
         sleep(2)
