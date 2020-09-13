@@ -21,6 +21,9 @@ text_json = json.loads(r.text)
 today = arrow.now().format('YYYY-MM-DD')
 timed = datetime.now().strftime('%I:%M')
 
+print(timed)
+
+print(datetime.now().hour)
 
 consumer_key = os.getenv('CONSUMER_KEY')
 
@@ -38,20 +41,20 @@ api = tweepy.API(auth)
 
 def pray():
     try:
-        if timed == text_json["times"][today]["fajr"]:
+        if datetime.now().hour == "4" or "5":
             api.update_status("it is fajr now!")
-        elif timed == text_json["times"][today]["dhuhr"]:
+        elif datetime.now().hour == "12" or "13":
             api.update_status("it is dhuhr now!")
-        elif timed == text_json["times"][today]["asr"]:
+        elif datetime.now().hour == "16" or "17" or "15":
             api.update_status("it is asr now!")
-        elif timed == text_json["times"][today]["magrib"]:
+        elif datetime.now().hour == "18" or "19":
             api.update_status("it is maghrib now!")
-        elif timed == text_json["times"][today]["isha"]:
+        elif datetime.now().hour == "20" or "21":
             api.update_status("it is isha now!")
         else:
             api.update_status("time should be 12:30 -- test")
     except tweepy.TweepError:
-        api.update_status("error handled.")
+        print("2")
         sleep(2)
 
 
@@ -60,7 +63,7 @@ schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["asr"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["magrib"]).do(pray)
 schedule.every().day.at(text_json["times"][today]["isha"]).do(pray)
-schedule.every().day.at("12:30 BST").do(pray)
+schedule.every().day.at("15:30").do(pray)
 
 
 while True:
