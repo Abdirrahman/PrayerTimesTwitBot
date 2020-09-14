@@ -40,31 +40,67 @@ auth.set_access_token(key, secret)
 api = tweepy.API(auth)
 
 
-def pray():
+def prayfajr():
     try:
         if datetime.now().hour == "4" or "5":
             api.update_status("it is fajr now!")
-        elif datetime.now().hour == "12" or "13":
-            api.update_status("it is dhuhr now!")
-        elif datetime.now().hour == "16" or "17" or "15":
-            api.update_status("it is asr now!")
-        elif datetime.now().hour == "18" or "19":
-            api.update_status("it is maghrib now!")
-        elif datetime.now().hour == "20" or "21":
-            api.update_status("it is isha now!")
         else:
-            api.update_status("time should be 15:30 -- test")
+            api.update_status("15;30?")
     except tweepy.TweepError:
         print("2")
         sleep(2)
 
 
-schedule.every().day.at(text_json["times"][today]["fajr"]).do(pray)
-schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(pray)
-schedule.every().day.at(text_json["times"][today]["asr"]).do(pray)
-schedule.every().day.at(text_json["times"][today]["magrib"]).do(pray)
-schedule.every().day.at(text_json["times"][today]["isha"]).do(pray)
-schedule.every().day.at("15:30").do(pray)
+def praydhuhr():
+    try:
+        if datetime.now().hour == "12" or "13" or "01":
+            api.update_status("dhuhr now!")
+        else:
+            api.update_status("else dhuhr")
+    except tweepy.TweepError:
+        print("2")
+        sleep(2)
+
+
+def prayasr():
+    try:
+        if datetime.now().hour == "15" or "16" or "17":
+            api.update_status("asr now!")
+        else:
+            api.update_status("asr else")
+    except tweepy.TweepError:
+        print("2")
+        sleep(2)
+
+
+def praymagrib():
+    try:
+        if datetime.now().hour == "18" or "19" or "20":
+            api.update_status("maghrib now!")
+        else:
+            api.update_status("maghrib else")
+    except tweepy.TweepError:
+        print("2")
+        sleep(2)
+
+
+def prayisha():
+    try:
+        if datetime.now().hour == "20" or "21" or "22":
+            api.update_status("isha now!")
+        else:
+            api.update_status(timed)
+    except tweepy.TweepError:
+        print("2")
+        sleep(2)
+
+
+schedule.every().day.at(text_json["times"][today]["fajr"]).do(prayfajr)
+schedule.every().day.at(text_json["times"][today]["dhuhr"]).do(praydhuhr)
+schedule.every().day.at(text_json["times"][today]["asr"]).do(prayasr)
+schedule.every().day.at(text_json["times"][today]["magrib"]).do(praymagrib)
+schedule.every().day.at(text_json["times"][today]["isha"]).do(prayisha)
+schedule.every().day.at("15:30").do(prayfajr)
 
 
 while True:
