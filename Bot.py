@@ -42,12 +42,12 @@ api = tweepy.API(auth)
 
 def prayfajr():
     try:
-        if datetime.now().hour == "4" or "5":
+        if datetime.now().hour == "4" or "5" or "04" or "05":
             api.update_status("it is fajr now!")
         else:
             api.update_status("15;30?")
     except tweepy.TweepError:
-        print("2")
+        print("1")
         sleep(2)
 
 
@@ -69,7 +69,7 @@ def prayasr():
         else:
             api.update_status("asr else")
     except tweepy.TweepError:
-        print("2")
+        print("3")
         sleep(2)
 
 
@@ -80,7 +80,7 @@ def praymagrib():
         else:
             api.update_status("maghrib else")
     except tweepy.TweepError:
-        print("2")
+        print("4")
         sleep(2)
 
 
@@ -91,7 +91,7 @@ def prayisha():
         else:
             api.update_status(timed)
     except tweepy.TweepError:
-        print("2")
+        print("5")
         sleep(2)
 
 
