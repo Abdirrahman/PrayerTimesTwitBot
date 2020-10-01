@@ -11,8 +11,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-
-url = "https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2020&month=september&24hours=true"
+key = os.getenv('URL')
+month = arrow.now().format('MMMM')
+url = f"https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2020&month={month}&24hours=true"
 r = requests.get(url)
 
 
@@ -21,10 +22,6 @@ text_json = json.loads(r.text)
 today = arrow.now().format('YYYY-MM-DD')
 timed = datetime.now().strftime('%H:%M')
 
-
-print(timed)
-
-print(datetime.now().hour)
 
 consumer_key = os.getenv('CONSUMER_KEY')
 
