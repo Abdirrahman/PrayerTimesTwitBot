@@ -13,7 +13,7 @@ load_dotenv()
 
 key = os.getenv('URL')
 month = arrow.now().format('MMMM')
-url = f"https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2020&month={month}&24hours=true"
+url = f"https://www.londonprayertimes.com/api/times/?format=json&key=8e9e14c7-323f-4755-88d7-8bd51ab9f094&year=2021&month={month}&24hours=true"
 r = requests.get(url)
 
 
